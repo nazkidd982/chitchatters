@@ -22,14 +22,13 @@
         </div>
 
         <div class="chat-form input-group">
-            <input id="btn-input" v-model="newMessage" class="form-control input-sm message-" name="message"
+            <input id="btn-input" v-model="newMessage" class="form-control input-sm message-input" name="message"
                    placeholder="Type your message here..." type="text" @keyup.enter="addMessage">
-
-            <span class="input-group-btn">
+            <div class="input-group-append">
 	            <button id="btn-chat" class="btn btn-primary" @click="addMessage">
 	                Send
 	            </button>
-	        </span>
+            </div>
         </div>
 
     </div>
