@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,10 @@ class ChatMessageFactory extends Factory
      */
     public function definition()
     {
+        $users = User::all();
         return [
-            //
+            'user_id' => $this->faker->randomElement($users->pluck('id')->toArray()),
+            'message' => $this->faker->paragraph(1),
         ];
     }
 }
