@@ -43,3 +43,13 @@
     border-radius: 0px;
     border-end-end-radius: 5px;
 }
+
+.message-time-receive {
+    font-size: 0.7rem;
+    color: #cccccc;
+}
+
+.message-time-send {
+    font-size: 0.7rem;
+    color: #666;
+}

@@ -1,42 +1,7 @@
-<template>
-    <div class="chat card">
-        <div ref="hasScrolledToBottom" class="scrollable card-body">
-            <template v-for="message in messages">
-                <div v-if="user.id !== message.user.id" class="message message-receive">
-                    <p>
-                        <strong class="primary-font">
-                            {{ message.user.name }} :
-                        </strong>
-                        {{ message.message }}
-                    </p>
-                </div>
-                <div v-else class="message message-send">
-                    <p>
-                        <strong class="primary-font">
-                            {{ message.user.name }} :
-                        </strong>
-                        {{ message.message }}
-                    </p>
-                </div>
-            </template>
-        </div>
-
-        <div class="chat-form input-group">
-            <input id="btn-input" v-model="newMessage" class="form-control input-sm message-input" name="message"
-                   placeholder="Type your message here..." type="text" @keyup.enter="addMessage">
-            <div class="input-group-append">
-	            <button id="btn-chat" class="btn btn-primary" @click="addMessage">
-	                Send
-	            </button>
-            </div>
-        </div>
-
-    </div>
-</template>
-
 <script setup>
 import {onMounted, onUpdated, ref} from 'vue';
 import axios from 'axios';
+import moment from 'moment';
 
 const props = defineProps({
     user: Object,
@@ -87,3 +52,41 @@ const scrollBottom = () => {
     }
 };
 </script>
+
+<template>
+    <div class="chat card">
+        <div ref="hasScrolledToBottom" class="scrollable card-body">
+            <template v-for="message in messages">
+                <div v-if="user.id !== message.user.id" class="message message-receive">
+                    <p>
+                        <strong class="primary-font">
+                            {{ message.user.username }} :
+                        </strong><br>
+                        {{ message.message }}<br>
+                        <span class="message-time-receive">{{ moment(message.created_at).format('DD-MM-YY hh:mm a') }}</span>
+                    </p>
+                </div>
+                <div v-else class="message message-send">
+                    <p>
+                        <strong class="primary-font">
+                            {{ message.user.username }} :
+                        </strong><br>
+                        {{ message.message }}<br>
+                        <span class="message-time-send">{{ moment(message.created_at).format('DD-MM-YY hh:mm a') }}</span>
+                    </p>
+                </div>
+            </template>
+        </div>
+
+        <div class="chat-form input-group">
+            <input id="btn-input" v-model="newMessage" class="form-control input-sm message-input" name="message"
+                   placeholder="Type your message here..." type="text" @keyup.enter="addMessage">
+            <div class="input-group-append">
+	            <button id="btn-chat" class="btn btn-primary" @click="addMessage">
+	                Send
+	            </button>
+            </div>
+        </div>
+
+    </div>
+</template>

@@ -4,8 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import '../css/app.css';
+import 'vuetify/styles';
 import './bootstrap';
 import { createApp } from 'vue';
+import { createVuetify } from 'vuetify';
 import ChatBoard from "@/components/ChatBoard.vue";
 
 /**
@@ -15,8 +17,9 @@ import ChatBoard from "@/components/ChatBoard.vue";
  */
 
 const app = createApp({});
+const vuetify = createVuetify();
 
-app.component('chat-board', ChatBoard);
+app.component('chat-board', ChatBoard).use(vuetify);
 
 /**
  * The following block of code may be used to automatically register your

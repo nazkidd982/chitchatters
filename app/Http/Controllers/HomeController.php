@@ -40,13 +40,10 @@ class HomeController extends Controller
     public function messageStore(Request $request)
     {
         $user = Auth::user();
-
         $messages = $user->messages()->create([
             'message' => $request->message
         ]);
-
         broadcast(new SendMessage($user, $messages))->toOthers();
-
         return 'message sent';
     }
 }
